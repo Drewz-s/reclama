@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music & Blog | Fongi & Prookaazniko</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #4B0082;
+            --accent: #FF6B6B;
+            --text: #F8F9FA;
+            --neon-purple: rgba(138,43,226,0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #0A0A0A;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(45deg, 
+                #8A2BE2,
+                #FF00FF,
+                #00FFFF
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: logoGlow 2s infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 10px var(--neon-purple); }
+            100% { text-shadow: 0 0 30px var(--neon-purple); }
+        }
+
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, 
+                rgba(138,43,226,0.1) 0%, 
+                rgba(0,0,0,0) 70%);
+            animation: pulse 8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            text-shadow: 0 0 20px var(--primary);
+            position: relative;
+        }
+
+        .channels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .channel-card {
+            background: rgba(0,0,0,0.7);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            transition: transform 0.3s ease;
+            border: 1px solid transparent;
+            backdrop-filter: blur(10px);
+        }
+
+        .channel-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                #8A2BE2,
+                #FF00FF,
+                #00FFFF,
+                #8A2BE2
+            );
+            background-size: 400%;
+            z-index: -1;
+            border-radius: 22px;
+            animation: borderGlow 6s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0%; }
+            100% { background-position: 400%; }
+        }
+
+        .channel-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .channel-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .channel-image:hover {
+            transform: scale(1.05);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.5);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .telegram-btn {
+            color: white;
+            box-shadow: 0 0 15px rgba(0,136,204,0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--primary), 
+                transparent
+            );
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .channels {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .parallax {
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .parallax.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .rgb-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particle 2s infinite;
+        }
+
+        @keyframes particle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">Fongi & Prookaazniko</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="parallax">Музыка & Блог</h1>
+            <p class="parallax">Открой для себя новые грани творчества</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="channels">
+            <div class="channel-card parallax">
+                <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                     class="channel-image" alt="Музыка">
+                <h2>🎵 Music Fongi</h2>
+                <p>Эксклюзивные музыкальные подборки, новинки мира музыки, интервью с исполнителями и уникальные плейлисты</p>
+                <a href="https://t.me/Music_Fongi" class="btn telegram-btn" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    Подписаться
+                </a>
+            </div>
+
+            <div class="channel-card parallax">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                     class="channel-image" alt="Блог">
+                <h2>📝 PROOKAAZNIKO</h2>
+                <p>Личный блог о творчестве, жизни и вдохновении. Авторские статьи, лайфстайл и креативные проекты</p>
+                <a href="https://t.me/PROOKAAZNIKO" class="btn telegram-btn" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    Подписаться
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Fongi & Prookaazniko. Все права защищены</p>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация частиц
+        function createParticle(e) {
+            const particle = document.createElement('div');
+            particle.className = 'rgb-particle';
+            particle.style.left = e.clientX + 'px';
+            particle.style.top = e.clientY + 'px';
+            particle.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            document.body.appendChild(particle);
+            
+            setTimeout(() => particle.remove(), 2000);
+        }
+
+        document.addEventListener('mousemove', createParticle);
+
+        // Анимация при скролле
+        const parallaxElements = document.querySelectorAll('.parallax');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {threshold: 0.1});
+
+        parallaxElements.forEach(el => observer.observe(el));
+
+        // Параллакс эффект для героя
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 30;
+            const y = (window.innerHeight / 2 - e.pageY) / 30;
+            document.querySelector('.hero').style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body>
+</html>
